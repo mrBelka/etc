@@ -2,6 +2,7 @@
 Если в матрице нет еще одного элемента, равного ее максимальному 
 элементу, упорядочить элементы строк матрицы, в которых есть 
 простые числа, по невозрастанию абсолютных величин. Использовать процедуры и функции!}
+
 {$APPTYPE CONSOLE}
 {$R+,Q+}
 
@@ -48,7 +49,7 @@ begin
     for i:=1 to n do
         for j:=1 to n do
             //если есть еще 1 элемент, равный максимальному 
-            if (max=a[i,j]) and (i<>k1) and (j<>k2) then begin
+            if (max=a[i,j]) and not((i=k1) and (j=k2)) then begin
                 result:=true;
                 exit;
             end;
@@ -78,11 +79,12 @@ var
     j:integer;
 begin
     result:=false;
-    for j:=1 to n do
+    for j:=1 to n do begin
         if Prime(a[i,j]) then begin
             result:=true;
             exit;
         end;
+    end;
 end;
 
 procedure Sort(n:integer;var a:T_array);
@@ -91,7 +93,7 @@ var
 begin
     for i:=1 to n do begin
         //если в строке есть 1 простое число
-        if isPrime(i,n,a) then
+        if isPrime(i,n,a) then begin
             //сортируем строку
             for j:=1 to n-1 do
                 for k:=j+1 to n do
@@ -100,6 +102,7 @@ begin
                         a[i,j]:=a[i,k];
                         a[i,k]:=t;
                     end;
+        end;
     end;
 end;
 
