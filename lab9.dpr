@@ -13,6 +13,11 @@ var
     x,n,i,tmp,last,first:integer;
 
 begin
+    Assign(input,'input.txt');
+    Reset(input);
+    Assign(output,'output.txt');
+    Rewrite(output);
+    
     Readln(n);
     //считываем все числа
     for i:=1 to n do begin
